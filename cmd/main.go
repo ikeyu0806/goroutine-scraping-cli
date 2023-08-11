@@ -7,17 +7,16 @@ import (
 )
 
 func main() {
-	fmt.Println("Scraping Start.")
+	fmt.Println("はてなITホットエントリー")
 	url := "https://b.hatena.ne.jp/hotentry/it"
 
 	c := colly.NewCollector()
 
-	c.OnHTML("title", func(e *colly.HTMLElement) {
-		fmt.Println("Title:", e.Text)
-	})
-
-	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting URL:", r.URL.String())
+	c.OnHTML(".entrylist-contents-main", func(e *colly.HTMLElement) {
+		title := e.ChildText("h3")
+		link := e.ChildAttr("a", "href")
+		fmt.Printf("タイトル: %s\n", title)
+		fmt.Printf("リンク: %s\n\n", link)
 	})
 
 	c.Visit(url)
