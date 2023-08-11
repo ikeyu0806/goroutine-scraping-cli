@@ -15,7 +15,7 @@ func ScrapingHatenaItHotentry() {
 	c.OnHTML(".entrylist-contents-main", func(e *colly.HTMLElement) {
 		title := e.ChildText("h3")
 		link := e.ChildAttr("a", "href")
-		fmt.Printf("タイトル: %s\n", title)
+		fmt.Printf("はてなITホットエントリー タイトル: %s\n", title)
 		fmt.Printf("リンク: %s\n\n", link)
 	})
 
