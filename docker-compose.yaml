@@ -1,12 +1,20 @@
 version: '3'
 services:
-  goroutine-scraping-cli:
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - .:/app
+  goroutine-scraping-api:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: goroutine-scraping-cli:latest
+      dockerfile: api/Dockerfile
+    image: goroutine-scraping-api:latest
     volumes:
-      - ./:/app
+      - ./api/:/app
       - go_module_data:/go
 
 volumes:

@@ -1,4 +1,4 @@
-module goroutine-scraping-cli
+module goroutine-scraping-api
 
 go 1.21.0
 

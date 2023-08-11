@@ -1,7 +1,7 @@
 package main
 
 import (
-	"goroutine-scraping-cli/sites"
+	"goroutine-scraping-api/sites"
 	"sync"
 )
 

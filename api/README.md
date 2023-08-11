@@ -4,5 +4,5 @@ Qiitaのトレンド記事とはてなのITホットエントリーを収集し�
 # ローカル実行
 ```
 docker-compose build
-docker-compose run goroutine-scraping-cli
+docker-compose run goroutine-scraping-api
 ```
