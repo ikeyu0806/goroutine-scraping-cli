@@ -7,3 +7,7 @@ services:
     image: goroutine-scraping-cli:latest
     volumes:
       - ./:/app
+      - go_module_data:/go
+
+volumes:
+  go_module_data:
