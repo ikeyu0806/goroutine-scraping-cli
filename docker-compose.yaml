@@ -1,0 +1,9 @@
+version: '3'
+services:
+  goroutine-scraping-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: goroutine-scraping-cli:latest
+    volumes:
+      - ./:/app
