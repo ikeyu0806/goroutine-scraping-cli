@@ -1,8 +1,24 @@
 package main
 
-import "goroutine-scraping-cli/sites"
+import (
+	"goroutine-scraping-cli/sites"
+	"sync"
+)
 
 func main() {
-	sites.ScrapingHatenaItHotentry()
-	sites.ScrapingQiitaWeeklyTrend()
+	var wg sync.WaitGroup
+
+	wg.Add(2)
+
+	go func() {
+		sites.ScrapingHatenaItHotentry()
+		defer wg.Done()
+	}()
+
+	go func() {
+		sites.ScrapingQiitaWeeklyTrend()
+		defer wg.Done()
+	}()
+
+	wg.Wait()
 }
