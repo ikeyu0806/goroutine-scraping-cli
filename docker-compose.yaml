@@ -1,21 +1,30 @@
 version: '3'
 services:
-  # web:
+  # go-webassembly:
   #   build:
   #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8080:80"
+  #     dockerfile: webassembly/Dockerfile
   #   volumes:
-  #     - .:/app
+  #     - ./webassembly/:/app
+  go-web-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    volumes:
+      - ./server/:/app
+      - server_go_module_data:/go
+    ports:
+      # ローカルのポート被らないように
+      # 3112は適当
+      - "3112:80"
   goroutine-scraping-api:
     build:
       context: .
       dockerfile: api/Dockerfile
-    image: goroutine-scraping-api:latest
     volumes:
       - ./api/:/app
-      - go_module_data:/go
+      - api_go_module_data:/go
 
 volumes:
-  go_module_data:
+  api_go_module_data:
+  server_go_module_data:
