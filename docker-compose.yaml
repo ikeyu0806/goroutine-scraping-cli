@@ -2,9 +2,9 @@ version: '3'
 services:
   go-web-server:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      context: ./frontend
     volumes:
+      - ./frontend/server:/app/frontend/server
       - server_go_module_data:/go
     ports:
       # ローカルのポート被らないように

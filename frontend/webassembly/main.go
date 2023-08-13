@@ -8,7 +8,7 @@ import (
 )
 
 func fetchContent(this js.Value, p []js.Value) interface{} {
-	url := "https://www.google.com"
+	url := "https://jsonplaceholder.typicode.com/photos"
 
 	resp, err := http.Get(url)
 	if err != nil {

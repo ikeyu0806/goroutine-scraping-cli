@@ -1,9 +1,9 @@
 FROM golang:1.21-bullseye
 
-WORKDIR /app
+COPY ./ /app/frontend
 
-COPY frontend /app/frontend
+WORKDIR /app
 
 RUN cd /app/frontend/webassembly && GOARCH=wasm GOOS=js go build -o main.wasm
 
-CMD ["go","run","/app/frontend/cmd/main.go"]
+CMD ["go","run","/app/frontend/server/main.go"]
