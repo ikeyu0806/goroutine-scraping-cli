@@ -26,5 +26,5 @@ services:
       - api_go_module_data:/go
 
 volumes:
-  api_go_module_data:
+  # api_go_module_data:
   server_go_module_data:
