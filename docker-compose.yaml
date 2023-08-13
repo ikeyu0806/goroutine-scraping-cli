@@ -1,17 +1,10 @@
 version: '3'
 services:
-  # go-webassembly:
-  #   build:
-  #     context: .
-  #     dockerfile: webassembly/Dockerfile
-  #   volumes:
-  #     - ./webassembly/:/app
   go-web-server:
     build:
       context: .
-      dockerfile: server/Dockerfile
+      dockerfile: frontend/Dockerfile
     volumes:
-      - ./server/:/app
       - server_go_module_data:/go
     ports:
       # ローカルのポート被らないように
@@ -24,7 +17,6 @@ services:
     volumes:
       - ./api/:/app
       - api_go_module_data:/go
-
 volumes:
-  # api_go_module_data:
+  api_go_module_data:
   server_go_module_data:
