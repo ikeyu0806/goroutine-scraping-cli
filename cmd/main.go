@@ -2,23 +2,40 @@ package main
 
 import (
 	"goroutine-scraping-cli/sites"
+
+	"fmt"
 	"sync"
 )
 
 func main() {
 	var wg sync.WaitGroup
 
+	resultChannel := make(chan sites.Article)
+
 	wg.Add(2)
 
 	go func() {
-		sites.ScrapingHatenaItHotentry()
+		articles := sites.ScrapingHatenaItHotentry()
+		for _, article := range articles {
+			resultChannel <- article
+		}
 		defer wg.Done()
 	}()
 
 	go func() {
-		sites.ScrapingQiitaWeeklyTrend()
+		articles := sites.ScrapingQiitaWeeklyTrend()
+		for _, article := range articles {
+			resultChannel <- article
+		}
 		defer wg.Done()
 	}()
 
-	wg.Wait()
+	go func() {
+		wg.Wait()
+		close(resultChannel)
+	}()
+
+	for result := range resultChannel {
+		fmt.Println(result)
+	}
 }
